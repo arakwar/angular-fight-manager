@@ -3,12 +3,14 @@ export class Character {
     x    : number;
     y    : number;
     type : string;
+    src  : string;
 
-    constructor(name,x,y,type){
+    constructor(name,x,y,type,src){
         this.name = name;
         this.x    = x;
         this.y    = y;
         this.type = type;
+        this.src  = src;
     }
 
     triangle(){

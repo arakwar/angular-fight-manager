@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   type : string = "circle";
 
   ngOnInit(){
-
+    this.characters.push(new Character("map1",50,50,"image","/assets/4x4.jpg"));
   }
 
   selectElement(id){
@@ -41,6 +41,6 @@ export class AppComponent implements OnInit {
   }
 
   addChar(){
-    this.characters.push(new Character(this.name,26,26,this.type));
+    this.characters.push(new Character(this.name,26,26,this.type,""));
   }
 }
