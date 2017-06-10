@@ -1,8 +1,16 @@
-<div class="grid map">
-  <svg #svg (mousemove)="mouseMove($event)" (mouseup)="mouseUp()">
-    <g *ngFor="let c of characters; let i = index" (mousedown)="selectElement(i)" class="draggable">
-      <circle  [attr.cx]="c.x" [attr.cy]="c.y" r="25" stroke="black" stroke-width="2" fill="lightgrey" />
-      <text [attr.x]="c.x-20" [attr.y]="c.y+5">{{c.name}}</text>
-    </g>
-  </svg>
+<div class="container">
+  <div class="grid map">
+    <svg #svg (mousemove)="mouseMove($event)" (mouseup)="mouseUp()">
+      <g *ngFor="let c of characters; let i = index" (mousedown)="selectElement(i)" class="draggable">
+        <circle  [attr.cx]="c.x" [attr.cy]="c.y" r="25" stroke="black" stroke-width="2" fill="lightgrey" />
+        <text [attr.x]="c.x-20" [attr.y]="c.y+5">{{c.name}}</text>
+      </g>
+    </svg>
+  </div>
+  <div class="sidebar">
+    <div>
+      <input type="text" #name >
+      <button type="button" (click)="addChar(name.value)">Add</button>
+    </div>
+  </div>
 </div>

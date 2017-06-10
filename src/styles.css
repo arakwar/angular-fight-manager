@@ -7,6 +7,12 @@ html,body{
 
 svg { position:absolute; top:0; height:100%; left:0; width:100%; }
 
+.container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
 .grid{
     background-size: 56px 56px;
     background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
@@ -14,8 +20,13 @@ svg { position:absolute; top:0; height:100%; left:0; width:100%; }
 
 .map{
     position: relative;
-    width:100%;
+    flex : 0 1 auto;
     height: 100%;
+    width:80%;
+}
+
+.sidebar{
+    flex: 0 1 20%;
 }
 
 .draggable{
