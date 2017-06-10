@@ -8,39 +8,39 @@ import { Character } from './character';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  private characters : Character[] = [];
+  characters : Character[] = [];
   @ViewChild('svg') svg : ElementRef;
-  private selectedElement: Character = null;
   private selectedIndex: number;
+  name : string = "";
+  type : string = "circle";
 
   ngOnInit(){
 
   }
 
   selectElement(id){
-    this.selectedElement = this.characters[id];
     this.selectedIndex = id;
   }
 
   mouseUp(){
-    if(this.selectedElement!=null){
-      this.selectedElement.x = Math.floor(this.selectedElement.x/56)*56+28;
-      this.selectedElement.y = Math.floor(this.selectedElement.y/56)*56+28;
-      if(this.selectedElement.x < 56 && this.selectedElement.y < 56){
+    if(this.selectedIndex!=null){
+      this.characters[this.selectedIndex].x = Math.floor(this.characters[this.selectedIndex].x/56)*56+28;
+      this.characters[this.selectedIndex].y = Math.floor(this.characters[this.selectedIndex].y/56)*56+28;
+      if(this.characters[this.selectedIndex].x < 56 && this.characters[this.selectedIndex].y < 56){
         this.characters.splice(this.selectedIndex,1);
       }
-      this.selectedElement = null;
+      this.selectedIndex = null;
     }
   }
 
   mouseMove(event: MouseEvent){
-    if(this.selectedElement!=null){
-      this.selectedElement.x = event.offsetX;
-      this.selectedElement.y = event.offsetY;
+    if(this.selectedIndex!=null){
+      this.characters[this.selectedIndex].x = event.offsetX;
+      this.characters[this.selectedIndex].y = event.offsetY;
     }
   }
 
-  addChar(name){
-    this.characters.push(new Character(name,26,26));
+  addChar(){
+    this.characters.push(new Character(this.name,26,26,this.type));
   }
 }

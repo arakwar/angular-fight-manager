@@ -1,16 +1,34 @@
 <div class="container">
   <div class="grid map">
     <svg #svg (mousemove)="mouseMove($event)" (mouseup)="mouseUp()">
-      <g *ngFor="let c of characters; let i = index" (mousedown)="selectElement(i)" class="draggable">
-        <circle  [attr.cx]="c.x" [attr.cy]="c.y" r="25" stroke="black" stroke-width="2" fill="lightgrey" />
-        <text [attr.x]="c.x-20" [attr.y]="c.y+5">{{c.name}}</text>
+      <g *ngFor="let c of characters; let i = index" (mousedown)="selectElement(i)" class="draggable" [ngSwitch]="c.type">
+        <ng-template [ngSwitchCase]="'circle'">
+          <circle  [attr.cx]="c.x" [attr.cy]="c.y" r="25" stroke="black" stroke-width="2" fill="lightgrey" />
+          <text [attr.x]="c.x-20" [attr.y]="c.y+5">{{c.name}}</text>
+        </ng-template>
+        <ng-template [ngSwitchCase]="'square'">
+          <rect  [attr.x]="c.x-24" [attr.y]="c.y-24" width="50" height="50" stroke="black" stroke-width="2" fill="lightgrey" />
+          <text [attr.x]="c.x-20" [attr.y]="c.y+5">{{c.name}}</text>
+        </ng-template>
+        <ng-template [ngSwitchCase]="'triangle'">
+          <polygon [attr.points]="c.triangle()" stroke="black" stroke-width="2" fill="lightgrey"/>
+          <text [attr.x]="c.x-20" [attr.y]="c.y+20">{{c.name}}</text>
+        </ng-template>
       </g>
     </svg>
   </div>
   <div class="sidebar">
     <div>
-      <input type="text" #name >
-      <button type="button" (click)="addChar(name.value)">Add</button>
+      <input type="text" [(ngModel)]="name" >
+      <button type="button" (click)="addChar()">Add</button>
+    </div>
+    <div>
+      <label for="square">Square</label>
+      <input type="radio" id="square" value="square" name="type" [(ngModel)]="type">
+      <label for="circle">Circle</label>
+      <input type="radio" id="circle" value="circle" name="type" [(ngModel)]="type">
+      <label for="triangle">Triangle</label>
+      <input type="radio" id="triangle" value="triangle" name="type" [(ngModel)]="type">
     </div>
   </div>
 </div>
