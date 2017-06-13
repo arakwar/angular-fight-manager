@@ -11,11 +11,14 @@ export class AppComponent implements OnInit {
   characters : Character[] = [];
   @ViewChild('svg') svg : ElementRef;
   private selectedIndex: number;
+  private tiles: Character[] = [];
   name : string = "";
   type : string = "circle";
 
   ngOnInit(){
-    this.characters.push(new Character("map1",50,50,"image","/assets/4x4.jpg"));
+    this.tiles.push(new Character('roadcross',26,26,"image","/assets/road-cross-4x4.jpg"));
+    this.tiles.push(new Character('roadh',26,26,"image","/assets/road-h-4x4.jpg"));
+    this.tiles.push(new Character('roadcross',26,26,"image","/assets/road-v-4x4.jpg"));
   }
 
   selectElement(id){
@@ -42,5 +45,12 @@ export class AppComponent implements OnInit {
 
   addChar(){
     this.characters.push(new Character(this.name,26,26,this.type,""));
+  }
+
+  addTile(index: number){
+    let tile = this.tiles[index];
+    let char = new Character();
+    char.clone(tile);
+    this.characters.push(char);
   }
 }

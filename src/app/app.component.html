@@ -33,5 +33,11 @@
       <label for="triangle">Triangle</label>
       <input type="radio" id="triangle" value="triangle" name="type" [(ngModel)]="type">
     </div>
+    <div>
+      <h4>Tiles</h4>
+      <button (click)="addTile(0)" type="button">Road - Cross</button>
+      <button (click)="addTile(1)" type="button">Road - Horizontal</button>
+      <button (click)="addTile(2)" type="button">Road = Vertical</button>
+    </div>
   </div>
 </div>
